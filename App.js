@@ -42,6 +42,24 @@ export default class App extends Component {
     };
   }
 
+  chooseImage = () => {
+    //options
+    let options = {
+      title: 'Select Image',
+      customButtons: [
+        {name: 'customOptionKey', title: 'Choose Photo from Custom Option'},
+      ],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    //call a function of imagepicker
+    ImagePicker.showImagePicker(options, response => {
+      console.log('Response for showImagePicker is : ', response);
+    });
+  };
+
   render() {
     return (
       <Fragment>
@@ -138,3 +156,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+/*
+
+DOWNGRADE THE VERSION OF IMAGE PICKER 2.x /2.3
+
+
+*/
