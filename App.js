@@ -57,6 +57,27 @@ export default class App extends Component {
     //call a function of imagepicker
     ImagePicker.showImagePicker(options, response => {
       console.log('Response for showImagePicker is : ', response);
+      
+      if(response.didCancel){
+        console.log('user cancelled')
+      }
+      else if(response.error){
+        console.log('some error',response.error)
+      }
+      else if(response.customButton){
+        alert(response.customButton)
+      }
+      else{
+        const source = {uri: response.uri}
+
+        this.setState({
+          filepath:response,
+          fileData:response.data,
+          fileUri:response.uri
+        });
+
+      }
+
     });
   };
 
@@ -85,7 +106,7 @@ export default class App extends Component {
               <TouchableOpacity
                 onPress={this.chooseImage}
                 style={styles.btnSection}>
-                <Text style={styles.btnText}>Choose File</Text>
+                <Text style={styles.btnText}>Choose Image</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
